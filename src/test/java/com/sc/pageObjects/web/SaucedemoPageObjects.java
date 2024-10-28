@@ -136,10 +136,10 @@ public class SaucedemoPageObjects implements SaucedemoPageObjectsInterface {
         }
         List<String> nameList = Helper.getTextOfWebElementsList(By.cssSelector(productNames));
         return switch (sortType) {
-            case "Price (low to high)" -> Helper.isPriceAscending(floatList);
-            case "Price (high to low)" -> Helper.isPriceDescending(floatList);
-            case "Name (A to Z)" -> Helper.isNameAscending(nameList);
-            case "Name (Z to A)" -> Helper.isNameDescending(nameList);
+            case "Price (low to high)" -> Helper.isPriceSorted(floatList,true);
+            case "Price (high to low)" -> Helper.isPriceSorted(floatList,false);
+            case "Name (A to Z)" -> Helper.isNameSorted(nameList,true);
+            case "Name (Z to A)" -> Helper.isNameSorted(nameList,false);
             default -> false;
         };
 

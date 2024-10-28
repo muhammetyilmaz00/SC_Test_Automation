@@ -45,45 +45,28 @@ public class Helper {
         return Driver.getDriver().findElements(locator).stream().map(WebElement::getText).toList();
     }
 
-    public static boolean isNameAscending(List<String> list) {
-        for (int i = 0; i < list.size() - 1; i++) {
-            if (list.get(i).compareTo(list.get(i + 1)) >= 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static boolean isNameDescending(List<String> list) {
-        for (int i = 0; i < list.size() - 1; i++) {
-            if (list.get(i).compareTo(list.get(i + 1)) <= 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    public static boolean isPriceAscending(List<Float> list) {
+    public static boolean isNameSorted(List<String> list, boolean ascending) {
         if (list == null || list.size() <= 1) {
             return true;
         }
 
         for (int i = 0; i < list.size() - 1; i++) {
-            if (list.get(i) > list.get(i + 1)) {
+            int comparison = list.get(i).compareTo(list.get(i + 1));
+            if ((ascending && comparison >= 0) || (!ascending && comparison <= 0)) {
                 return false;
             }
         }
         return true;
     }
 
-    public static boolean isPriceDescending(List<Float> list) {
+    public static boolean isPriceSorted(List<Float> list, boolean ascending) {
         if (list == null || list.size() <= 1) {
             return true;
         }
 
         for (int i = 0; i < list.size() - 1; i++) {
-            if (list.get(i) < list.get(i + 1)) {
+            if ((ascending && list.get(i) > list.get(i + 1)) ||
+                    (!ascending && list.get(i) < list.get(i + 1))) {
                 return false;
             }
         }
